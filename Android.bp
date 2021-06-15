@@ -83,6 +83,7 @@ android_library {
         "columbus-settingsgoogle",
         "faceunlock_framework",
         "battery-settingsgoogle",
+        "glide",
     ],
 
     libs: [
@@ -165,4 +166,9 @@ java_import {
     name: "battery-settingsgoogle",
     jars: ["libs/battery-settings.jar"],
     sdk_version: "current",
+}
+
+android_library_import {
+    name: "glide",
+    aars: ["libs/glide-4.9.0.aar"],
 }
