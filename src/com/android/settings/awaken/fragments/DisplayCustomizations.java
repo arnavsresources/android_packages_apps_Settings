@@ -33,6 +33,7 @@ import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.SwitchPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
+import com.android.internal.util.awaken.AwakenUtils;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -155,6 +156,13 @@ public class DisplayCustomizations extends SettingsPreferenceFragment
         cameraIndicator.setDefaultValue(def);
         cameraIndicator.setChecked(Settings.Secure.getInt(resolver,
                 CAMERA_INDICATOR, def ? 1 : 0) == 1);
+
+        boolean udfpsResPkgInstalled = AwakenUtils.isPackageInstalled(getContext(),
+                "com.awaken.udfps.resources");
+        PreferenceCategory udfps = (PreferenceCategory) prefSet.findPreference("udfps_category");
+        if (!udfpsResPkgInstalled) {
+            prefSet.removePreference(udfps);
+        }
     }
 
     @Override
